@@ -9,17 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080810;
-      --surface: #0f0f1a;
-      --card: #13131f;
-      --border: #1c1c2e;
-      --border2: #252538;
-      --accent: #7c6aff;
-      --accent2: #00d4aa;
-      --pink: #ff6eb4;
-      --text: #e8e6f0;
-      --muted: #6b6880;
-      --muted2: #9995b0;
+      --bg: #000000;
+      --surface: #080808;
+      --card: #0d0d0d;
+      --border: #1a1a1a;
+      --border2: #222222;
+      --accent: #00ff87;
+      --accent-dim: rgba(0,255,135,0.08);
+      --text: #ffffff;
+      --muted: #555555;
+      --muted2: #999999;
       --mac-red: #ff5f57;
       --mac-yellow: #febc2e;
       --mac-green: #28c840;
@@ -48,13 +47,13 @@
       filter: blur(80px); pointer-events: none; z-index: 0;
     }
     .orb-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(124,106,255,0.12), transparent 70%);
-      top: -100px; left: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,255,135,0.06), transparent 70%);
+      top: -150px; left: -150px;
     }
     .orb-2 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,212,170,0.08), transparent 70%);
+      background: radial-gradient(circle, rgba(0,255,135,0.04), transparent 70%);
       bottom: 20%; right: -100px;
     }
 
@@ -104,8 +103,8 @@
     }
     .status-dot {
       width: 7px; height: 7px; border-radius: 50%;
-      background: var(--accent2);
-      box-shadow: 0 0 8px var(--accent2);
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
       animation: pulse 2s ease infinite;
     }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
@@ -121,10 +120,7 @@
     .h1-line1 { display: block; color: var(--text); }
     .h1-line2 {
       display: block;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 50%, var(--accent2) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent);
     }
     .hero-sub {
       font-size: 1.05rem; color: var(--muted2);
@@ -149,11 +145,11 @@
       font-family: 'Inter', sans-serif;
     }
     .btn-primary {
-      background: var(--accent); color: #fff;
+      background: var(--accent); color: #000;
       border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 0 20px rgba(124,106,255,0.3);
+      box-shadow: 0 0 24px rgba(0,255,135,0.25);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(124,106,255,0.5); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,255,135,0.4); }
     .btn-ghost {
       background: var(--card); color: var(--text);
       border: 1px solid var(--border2);
@@ -185,7 +181,7 @@
     .mac-dot:hover { filter: brightness(1.2); }
     .mac-dot-r { background: var(--mac-red); box-shadow: 0 0 6px rgba(255,95,87,0.4); }
     .mac-dot-y { background: var(--mac-yellow); box-shadow: 0 0 6px rgba(254,188,46,0.4); }
-    .mac-dot-g { background: var(--mac-green); box-shadow: 0 0 6px rgba(40,200,64,0.4); }
+    .mac-dot-g { background: var(--mac-green); box-shadow: 0 0 6px rgba(40,200,64,0.5); }
     .mac-title {
       flex: 1; text-align: center;
       font-family: 'JetBrains Mono', monospace;
@@ -194,10 +190,10 @@
     .mac-body { padding: 1.25rem 1.5rem; }
     .mac-line { margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
     .prompt { color: var(--accent); }
-    .prompt-path { color: var(--accent2); }
+    .prompt-path { color: var(--muted2); }
     .cmd-text { color: var(--text); }
     .out { color: var(--muted2); padding-left: 1.5rem; }
-    .out-accent { color: var(--accent2); }
+    .out-accent { color: var(--accent); }
     .out-pink { color: var(--pink); }
     .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); animation: blink 1.2s step-end infinite; vertical-align: text-bottom; }
     @keyframes blink { 50% { opacity: 0; } }
@@ -227,7 +223,7 @@
     }
     .skill-card::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(124,106,255,0.05), transparent);
+      background: linear-gradient(135deg, rgba(0,255,135,0.04), transparent);
       opacity: 0; transition: opacity 0.2s;
     }
     .skill-card:hover { background: #16162a; }
@@ -256,8 +252,7 @@
     .stat-num {
       font-family: 'Syne', sans-serif;
       font-size: 2.25rem; font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      color: var(--accent);
     }
     .stat-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; }
 
@@ -302,7 +297,7 @@
       display: flex; align-items: center; gap: 0.875rem;
       transition: all 0.2s;
     }
-    .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(124,106,255,0.15); }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,255,135,0.1); }
     .c-icon { font-size: 1.4rem; }
     .c-lbl { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
     .c-val { font-weight: 600; font-size: 0.9rem; margin-top: 0.1rem; }
