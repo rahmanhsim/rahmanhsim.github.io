@@ -29,14 +29,14 @@
     body { background:var(--bg); font-family:'Inter',sans-serif; color:var(--black); min-height:100vh; }
 
     /* ── NAV ── */
-    nav { max-width:680px; margin:0 auto; padding:1.2rem 1.5rem; display:flex; justify-content:space-between; align-items:center; }
+    nav { max-width:960px; margin:0 auto; padding:1.2rem 1.5rem; display:flex; justify-content:space-between; align-items:center; }
     .nav-logo { font-family:'Space Mono',monospace; font-weight:700; font-size:.9rem; text-decoration:none; color:var(--black); }
     .nav-links { display:flex; gap:1.5rem; list-style:none; }
     .nav-links a { font-family:'Space Mono',monospace; font-size:.7rem; text-decoration:none; color:var(--black); opacity:.5; transition:opacity .2s; }
     .nav-links a:hover { opacity:1; }
 
     /* ── WRAP ── */
-    .wrap { max-width:680px; margin:0 auto; padding:0 1.5rem; }
+    .wrap { max-width:960px; margin:0 auto; padding:0 2rem; }
 
     /* ── HERO ── */
     #hero { text-align:center; padding:3rem 1.5rem 2rem; max-width:680px; margin:0 auto; }
@@ -134,11 +134,13 @@
     footer p { font-family:'Space Mono',monospace; font-size:.7rem; opacity:.5; }
 
     /* ── MOBILE ── */
-    @media (max-width:520px) {
-      h1 { font-size:2.4rem; }
-      .skills-grid { grid-template-columns:1fr; }
-      .social-grid { grid-template-columns:1fr; }
-      .nav-links { display:none; }
+    @media (min-width: 768px) {
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .social-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
