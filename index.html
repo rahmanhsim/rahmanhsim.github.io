@@ -59,7 +59,27 @@
     .mac-body { padding: 1rem 1.1rem; font-family: 'Space Mono', monospace; font-size: 0.68rem; line-height: 1.7; color: #ccc; }
     .mac-body .g { color: #27c93f; } .mac-body .y { color: #ffbd2e; } .mac-body .b { color: #6fb3f5; } .mac-body .m { color: #c792ea; }
 
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 1.2rem; }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      background: transparent;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1.2rem 0; }
+    .htag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+      box-shadow: 2px 2px 0 var(--border);
+    }
 
     /* SECTIONS */
     section { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem; }
@@ -133,11 +153,23 @@
   <!-- HERO -->
   <div id="hero">
     <div class="hero-tag">AI Agent · Security Skills</div>
-    <h1>rahmanhsim<br><em>Skills.</em></h1>
+    <h1>awesome<br><em>Skills.</em></h1>
     <p class="hero-desc">
       A structured collection of security skills for web application penetration testing,
       API security assessment, network infrastructure auditing, and smart contract analysis.
     </p>
+    <div class="hero-tags">
+      <span class="htag">Web Pentest</span>
+      <span class="htag">API Security</span>
+      <span class="htag">Recon</span>
+      <span class="htag">Active Directory</span>
+      <span class="htag">Binary Exploit</span>
+      <span class="htag">Crypto</span>
+      <span class="htag">Mobile</span>
+      <span class="htag">Smart Contract</span>
+      <span class="htag">AI Security</span>
+      <span class="htag">110+ Skills</span>
+    </div>
     <div class="terminal">
       <div class="mac-bar">
         <div class="mac-dot red"></div>
