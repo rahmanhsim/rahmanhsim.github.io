@@ -5,375 +5,523 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Hasim Rahman — Security Researcher, Bug Bounty Hunter, Penetration Tester based in Jakarta, Indonesia.">
   <title>Hasim Rahman — Security Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --border: #1e1e2e;
-      --accent: #00ff88;
-      --accent2: #0088ff;
-      --text: #e2e8f0;
-      --muted: #64748b;
-      --danger: #ff4444;
+      --bg: #080810;
+      --surface: #0f0f1a;
+      --card: #13131f;
+      --border: #1c1c2e;
+      --border2: #252538;
+      --accent: #7c6aff;
+      --accent2: #00d4aa;
+      --pink: #ff6eb4;
+      --text: #e8e6f0;
+      --muted: #6b6880;
+      --muted2: #9995b0;
+      --mac-red: #ff5f57;
+      --mac-yellow: #febc2e;
+      --mac-green: #28c840;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-family: 'Inter', -apple-system, sans-serif;
       line-height: 1.6;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NOISE TEXTURE */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* GLOW ORBS */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(124,106,255,0.12), transparent 70%);
+      top: -100px; left: -100px;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,170,0.08), transparent 70%);
+      bottom: 20%; right: -100px;
     }
 
     /* NAV */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(8,8,16,0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2rem;
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo { color: var(--accent); font-size: 1rem; font-weight: 700; text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 0.95rem;
+      color: var(--text); text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted2); text-decoration: none;
+      font-size: 0.82rem; font-weight: 500;
+      padding: 0.4rem 0.85rem; border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--card); }
 
     /* HERO */
     .hero {
+      position: relative; z-index: 1;
       min-height: 100vh;
-      display: flex; align-items: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       padding: 6rem 2rem 4rem;
-      max-width: 900px; margin: 0 auto;
+      text-align: center;
     }
-    .hero-content { width: 100%; }
-    .hero-tag {
-      color: var(--accent); font-size: 0.85rem; margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-    .name-accent { color: var(--accent); }
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 2.5rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-    .hero-tags { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .tag {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      padding: 0.35rem 0.85rem;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      letter-spacing: 0.05em;
-    }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      padding: 0.75rem 1.75rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-family: inherit;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
+    .status-pill {
       display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--card); border: 1px solid var(--border2);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      font-size: 0.78rem; color: var(--muted2);
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent2);
+      box-shadow: 0 0 8px var(--accent2);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .h1-line1 { display: block; color: var(--text); }
+    .h1-line2 {
+      display: block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 50%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted2);
+      max-width: 480px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+    .tag {
+      background: var(--card); border: 1px solid var(--border2);
+      color: var(--muted2); padding: 0.3rem 0.8rem;
+      border-radius: 6px; font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.15s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.7rem 1.5rem; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
     }
     .btn-primary {
-      background: var(--accent); color: #0a0a0f;
-      border: none; font-weight: 700;
+      background: var(--accent); color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(124,106,255,0.3);
     }
-    .btn-primary:hover { background: #00cc6a; transform: translateY(-1px); }
-    .btn-outline {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border);
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(124,106,255,0.5); }
+    .btn-ghost {
+      background: var(--card); color: var(--text);
+      border: 1px solid var(--border2);
     }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-    /* TERMINAL EFFECT */
-    .terminal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.5rem;
-      margin-top: 3rem;
-      font-size: 0.82rem;
-      max-width: 540px;
+    /* MACWINDOW */
+    .mac-window {
+      position: relative; z-index: 1;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+      max-width: 580px; width: 100%;
+      margin: 3rem auto 0;
     }
-    .terminal-bar {
-      display: flex; gap: 0.5rem; margin-bottom: 1rem;
+    .mac-bar {
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      display: flex; align-items: center; gap: 1rem;
     }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-r { background: #ff5f57; }
-    .dot-y { background: #febc2e; }
-    .dot-g { background: #28c840; }
-    .terminal-line { color: var(--muted); margin-bottom: 0.25rem; }
-    .terminal-cmd { color: var(--accent); }
-    .terminal-out { color: #94a3b8; }
-    .blink { animation: blink 1s step-end infinite; }
+    .mac-dots { display: flex; gap: 6px; }
+    .mac-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      transition: filter 0.15s;
+    }
+    .mac-dot:hover { filter: brightness(1.2); }
+    .mac-dot-r { background: var(--mac-red); box-shadow: 0 0 6px rgba(255,95,87,0.4); }
+    .mac-dot-y { background: var(--mac-yellow); box-shadow: 0 0 6px rgba(254,188,46,0.4); }
+    .mac-dot-g { background: var(--mac-green); box-shadow: 0 0 6px rgba(40,200,64,0.4); }
+    .mac-title {
+      flex: 1; text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; color: var(--muted);
+    }
+    .mac-body { padding: 1.25rem 1.5rem; }
+    .mac-line { margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+    .prompt { color: var(--accent); }
+    .prompt-path { color: var(--accent2); }
+    .cmd-text { color: var(--text); }
+    .out { color: var(--muted2); padding-left: 1.5rem; }
+    .out-accent { color: var(--accent2); }
+    .out-pink { color: var(--pink); }
+    .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); animation: blink 1.2s step-end infinite; vertical-align: text-bottom; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* SECTIONS */
-    section { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
-    .section-label {
-      color: var(--accent); font-size: 0.78rem; letter-spacing: 0.1em;
-      text-transform: uppercase; margin-bottom: 0.5rem;
-      display: flex; align-items: center; gap: 0.75rem;
+    /* SECTION */
+    section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 6rem 2rem; }
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: var(--accent);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;
     }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section-eyebrow::before { content: '//'; opacity: 0.5; }
     h2 {
-      font-size: 2rem; font-weight: 800;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      margin-bottom: 3rem; letter-spacing: -0.02em;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 3rem; line-height: 1.1;
     }
 
-    /* SKILLS GRID */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
     .skill-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 1.25rem;
-      transition: border-color 0.2s, transform 0.2s;
+      background: var(--card); padding: 1.5rem;
+      transition: background 0.2s;
+      position: relative; overflow: hidden;
     }
-    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .skill-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-    .skill-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    .skill-desc { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+    .skill-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(124,106,255,0.05), transparent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .skill-card:hover { background: #16162a; }
+    .skill-card:hover::before { opacity: 1; }
+    .skill-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: var(--muted); margin-bottom: 0.75rem;
+    }
+    .skill-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .skill-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+    .stag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.67rem; color: var(--muted);
+      background: var(--surface); padding: 0.2rem 0.5rem; border-radius: 4px;
+    }
 
     /* STATS */
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
-    .stat-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 1.5rem; text-align: center;
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 2rem; }
+    .stat {
+      background: var(--card); padding: 1.75rem 1.25rem; text-align: center;
     }
     .stat-num {
-      font-size: 2.5rem; font-weight: 800; color: var(--accent);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Syne', sans-serif;
+      font-size: 2.25rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .stat-label { color: var(--muted); font-size: 0.8rem; margin-top: 0.25rem; }
+    .stat-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; }
 
     /* HOF */
-    .hof-grid { display: grid; gap: 1rem; }
-    .hof-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 1.25rem 1.5rem;
+    .hof-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .hof-item {
+      background: var(--card); padding: 1.25rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-      transition: border-color 0.2s;
+      gap: 1rem; flex-wrap: wrap;
+      transition: background 0.15s;
     }
-    .hof-card:hover { border-color: var(--accent2); }
+    .hof-item:hover { background: #16162a; }
     .hof-left { display: flex; align-items: center; gap: 1rem; }
-    .hof-logo {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--border); display: flex; align-items: center;
-      justify-content: center; font-size: 1.2rem;
+    .hof-ico {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--surface); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
     }
-    .hof-company { font-weight: 700; font-size: 0.95rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    .hof-detail { color: var(--muted); font-size: 0.8rem; }
-    .severity {
-      padding: 0.25rem 0.75rem; border-radius: 4px;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    .hof-co { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .hof-sub { font-size: 0.78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-top: 0.1rem; }
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 0.3rem 0.7rem; border-radius: 6px;
+      letter-spacing: 0.06em;
     }
-    .sev-critical { background: rgba(255,68,68,0.15); color: #ff6b6b; border: 1px solid rgba(255,68,68,0.3); }
-    .sev-high { background: rgba(255,136,0,0.15); color: #ffaa44; border: 1px solid rgba(255,136,0,0.3); }
-    .sev-medium { background: rgba(255,200,0,0.15); color: #ffd44d; border: 1px solid rgba(255,200,0,0.3); }
+    .badge-crit { background: rgba(255,95,87,0.12); color: #ff6b6b; border: 1px solid rgba(255,95,87,0.25); }
+    .badge-high { background: rgba(255,188,46,0.12); color: #ffc94d; border: 1px solid rgba(255,188,46,0.25); }
+    .badge-med  { background: rgba(124,106,255,0.12); color: #a08fff; border: 1px solid rgba(124,106,255,0.25); }
+    .hof-empty {
+      background: var(--card); padding: 3rem;
+      text-align: center; color: var(--muted);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+    }
 
     /* CONTACT */
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
     .contact-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 1.25rem;
+      background: var(--card); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
       text-decoration: none; color: var(--text);
-      display: flex; align-items: center; gap: 1rem;
+      display: flex; align-items: center; gap: 0.875rem;
       transition: all 0.2s;
     }
-    .contact-card:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .contact-icon { font-size: 1.5rem; }
-    .contact-label { font-size: 0.75rem; color: var(--muted); }
-    .contact-value { font-size: 0.9rem; font-weight: 600; }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(124,106,255,0.15); }
+    .c-icon { font-size: 1.4rem; }
+    .c-lbl { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .c-val { font-weight: 600; font-size: 0.9rem; margin-top: 0.1rem; }
 
     /* FOOTER */
     footer {
+      position: relative; z-index: 1;
       border-top: 1px solid var(--border);
       text-align: center; padding: 2rem;
-      color: var(--muted); font-size: 0.8rem;
+      color: var(--muted); font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    @media (max-width: 600px) {
-      nav { padding: 1rem; }
-      .nav-links { gap: 1rem; }
-      h1 { font-size: 2.2rem; }
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    @media (max-width: 640px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 0; }
     }
   </style>
 </head>
 <body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-<nav>
-  <a href="#" class="nav-logo">~/rahmanhsim</a>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#hof">Hall of Fame</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a href="#" class="nav-logo">hasim<span>.</span>sh</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hof">Hall of Fame</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<div class="hero">
-  <div class="hero-content">
-    <div class="hero-tag">Security Researcher</div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      available for bug bounty · Jakarta, ID
+    </div>
     <h1>
-      Hasim<br>
-      <span class="name-accent">Rahman</span>
+      <span class="h1-line1">Security</span>
+      <span class="h1-line2">Researcher.</span>
     </h1>
     <p class="hero-sub">
-      Bug Bounty Hunter & Penetration Tester based in Jakarta, Indonesia.
-      Finding vulnerabilities before the bad guys do.
+      Bug bounty hunter & penetration tester.
+      Finding vulnerabilities before adversaries do.
     </p>
     <div class="hero-tags">
-      <span class="tag">Web Security</span>
-      <span class="tag">API Testing</span>
-      <span class="tag">Network Pentest</span>
-      <span class="tag">Smart Contract</span>
-      <span class="tag">OSINT</span>
+      <span class="tag">web_security</span>
+      <span class="tag">api_fuzzing</span>
+      <span class="tag">osint</span>
+      <span class="tag">network_pentest</span>
+      <span class="tag">smart_contract</span>
+      <span class="tag">mobile</span>
     </div>
-    <div class="hero-cta">
-      <a href="#hof" class="btn btn-primary">↓ Hall of Fame</a>
-      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    <div class="hero-btns">
+      <a href="#hof" class="btn btn-primary">Hall of Fame ↓</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
     </div>
 
-    <div class="terminal">
-      <div class="terminal-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
+    <!-- MACWINDOW TERMINAL -->
+    <div class="mac-window">
+      <div class="mac-bar">
+        <div class="mac-dots">
+          <div class="mac-dot mac-dot-r"></div>
+          <div class="mac-dot mac-dot-y"></div>
+          <div class="mac-dot mac-dot-g"></div>
+        </div>
+        <div class="mac-title">terminal — zsh — 80×24</div>
+        <div style="width:54px"></div>
       </div>
-      <div class="terminal-line"><span class="terminal-cmd">$ whoami</span></div>
-      <div class="terminal-line terminal-out">rahmanhsim — security researcher</div>
-      <div class="terminal-line" style="margin-top:0.5rem"><span class="terminal-cmd">$ cat skills.txt</span></div>
-      <div class="terminal-line terminal-out">web pentesting, api fuzzing, osint, bug bounty</div>
-      <div class="terminal-line" style="margin-top:0.5rem"><span class="terminal-cmd">$ <span class="blink">_</span></span></div>
-    </div>
-  </div>
-</div>
-
-<section id="skills">
-  <div class="section-label">01 / expertise</div>
-  <h2>Security Arsenal</h2>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon">🕸️</div>
-      <div class="skill-name">Web Application</div>
-      <div class="skill-desc">XSS, SQLi, SSRF, SSTI, XXE, IDOR, auth bypass, business logic flaws</div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔌</div>
-      <div class="skill-name">API Security</div>
-      <div class="skill-desc">REST, GraphQL, JWT abuse, OAuth misconfig, BOLA/BFLA, rate limiting bypass</div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔍</div>
-      <div class="skill-name">Recon & OSINT</div>
-      <div class="skill-desc">Subdomain enum, asset discovery, Google dorks, Shodan, GitHub recon</div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🌐</div>
-      <div class="skill-name">Network Pentest</div>
-      <div class="skill-desc">Port scanning, service fingerprint, tunneling, AD attacks, lateral movement</div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">📱</div>
-      <div class="skill-name">Mobile Security</div>
-      <div class="skill-desc">Android/iOS pentesting, APK reverse engineering, SSL pinning bypass</div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">⛓️</div>
-      <div class="skill-name">Smart Contract</div>
-      <div class="skill-desc">Solidity audit, DeFi attack patterns, reentrancy, flash loan exploits</div>
-    </div>
-  </div>
-</section>
-
-<section id="hof">
-  <div class="section-label">02 / recognition</div>
-  <h2>Hall of Fame</h2>
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-num">0</div>
-      <div class="stat-label">Vulnerabilities Found</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">0</div>
-      <div class="stat-label">Programs Participated</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">0</div>
-      <div class="stat-label">Hall of Fames</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">$0</div>
-      <div class="stat-label">Total Bounties</div>
-    </div>
-  </div>
-  <div class="hof-grid">
-    <div class="hof-card" style="border-color: rgba(0,255,136,0.2); justify-content: center; padding: 2rem;">
-      <div style="text-align:center; color: var(--muted);">
-        <div style="font-size:2rem;margin-bottom:0.5rem">🏆</div>
-        <div style="font-size:0.9rem;">Hall of Fame entries coming soon...</div>
-        <div style="font-size:0.8rem;margin-top:0.25rem;color:var(--accent);">Currently hunting</div>
+      <div class="mac-body">
+        <div class="mac-line">
+          <span class="prompt-path">~/rahmanhsim</span>
+          <span class="prompt"> ❯ </span>
+          <span class="cmd-text">whoami</span>
+        </div>
+        <div class="mac-line out">
+          <span class="out-accent">hasim_rahman</span> — security researcher
+        </div>
+        <div class="mac-line" style="margin-top:0.6rem">
+          <span class="prompt-path">~/rahmanhsim</span>
+          <span class="prompt"> ❯ </span>
+          <span class="cmd-text">cat /etc/skills</span>
+        </div>
+        <div class="mac-line out">web · api · osint · network · mobile · crypto</div>
+        <div class="mac-line" style="margin-top:0.6rem">
+          <span class="prompt-path">~/rahmanhsim</span>
+          <span class="prompt"> ❯ </span>
+          <span class="cmd-text">nmap --open -sV targets.txt</span>
+        </div>
+        <div class="mac-line out">
+          Starting Nmap 7.94 <span class="out-pink">( https://nmap.org )</span>
+        </div>
+        <div class="mac-line out">
+          Host: <span class="out-accent">target.com</span> — PORT 443/tcp <span style="color:var(--mac-green)">open</span> https
+        </div>
+        <div class="mac-line" style="margin-top:0.6rem">
+          <span class="prompt-path">~/rahmanhsim</span>
+          <span class="prompt"> ❯ </span>
+          <span class="cursor"></span>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<section id="contact">
-  <div class="section-label">03 / connect</div>
-  <h2>Get In Touch</h2>
-  <div class="contact-grid">
-    <a href="https://twitter.com/rahmanhsim" target="_blank" class="contact-card">
-      <div class="contact-icon">𝕏</div>
-      <div>
-        <div class="contact-label">Twitter / X</div>
-        <div class="contact-value">@rahmanhsim</div>
-      </div>
-    </a>
-    <a href="https://github.com/rahmanhsim" target="_blank" class="contact-card">
-      <div class="contact-icon">⌥</div>
-      <div>
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">rahmanhsim</div>
-      </div>
-    </a>
-    <a href="https://instagram.com/rahmanhsim" target="_blank" class="contact-card">
-      <div class="contact-icon">◎</div>
-      <div>
-        <div class="contact-label">Instagram</div>
-        <div class="contact-value">@rahmanhsim</div>
-      </div>
-    </a>
-    <a href="https://hackenproof.com/hackers/rahmanhsim" target="_blank" class="contact-card">
-      <div class="contact-icon">🛡️</div>
-      <div>
-        <div class="contact-label">HackenProof</div>
-        <div class="contact-value">rahmanhsim</div>
-      </div>
-    </a>
-  </div>
-</section>
+  <hr class="divider">
 
-<footer>
-  <p>Built with ❤️ by Hasim Rahman · <span style="color:var(--accent)">rahmanhsim.github.io</span></p>
-</footer>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-eyebrow">expertise</div>
+    <h2>Security Arsenal</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-num">01</div>
+        <div class="skill-icon">🕸️</div>
+        <div class="skill-name">Web Application</div>
+        <div class="skill-tags">
+          <span class="stag">XSS</span><span class="stag">SQLi</span><span class="stag">SSRF</span>
+          <span class="stag">IDOR</span><span class="stag">SSTI</span><span class="stag">XXE</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">02</div>
+        <div class="skill-icon">🔌</div>
+        <div class="skill-name">API Security</div>
+        <div class="skill-tags">
+          <span class="stag">REST</span><span class="stag">GraphQL</span><span class="stag">JWT</span>
+          <span class="stag">OAuth</span><span class="stag">BOLA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">03</div>
+        <div class="skill-icon">🔍</div>
+        <div class="skill-name">Recon & OSINT</div>
+        <div class="skill-tags">
+          <span class="stag">Amass</span><span class="stag">Shodan</span><span class="stag">GitHub</span>
+          <span class="stag">dorking</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">04</div>
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">Network Pentest</div>
+        <div class="skill-tags">
+          <span class="stag">Nmap</span><span class="stag">AD</span><span class="stag">Pivoting</span>
+          <span class="stag">Kerberos</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">05</div>
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Mobile Security</div>
+        <div class="skill-tags">
+          <span class="stag">Android</span><span class="stag">iOS</span><span class="stag">APK</span>
+          <span class="stag">SSL-Pin</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">06</div>
+        <div class="skill-icon">⛓️</div>
+        <div class="skill-name">Smart Contract</div>
+        <div class="skill-tags">
+          <span class="stag">Solidity</span><span class="stag">DeFi</span><span class="stag">Reentrancy</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <hr class="divider">
+
+  <!-- HOF -->
+  <section id="hof">
+    <div class="section-eyebrow">recognition</div>
+    <h2>Hall of Fame</h2>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">0</div><div class="stat-lbl">bugs_found</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-lbl">programs</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-lbl">hall_of_fames</div></div>
+      <div class="stat"><div class="stat-num">$0</div><div class="stat-lbl">bounties</div></div>
+    </div>
+    <div class="hof-list">
+      <div class="hof-empty">
+        // no entries yet — currently hunting 🎯
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-eyebrow">connect</div>
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
+      <a href="https://twitter.com/rahmanhsim" target="_blank" class="contact-card">
+        <div class="c-icon">𝕏</div>
+        <div><div class="c-lbl">twitter</div><div class="c-val">@rahmanhsim</div></div>
+      </a>
+      <a href="https://github.com/rahmanhsim" target="_blank" class="contact-card">
+        <div class="c-icon">⌥</div>
+        <div><div class="c-lbl">github</div><div class="c-val">rahmanhsim</div></div>
+      </a>
+      <a href="https://instagram.com/rahmanhsim" target="_blank" class="contact-card">
+        <div class="c-icon">◎</div>
+        <div><div class="c-lbl">instagram</div><div class="c-val">@rahmanhsim</div></div>
+      </a>
+      <a href="https://hackenproof.com/hackers/rahmanhsim" target="_blank" class="contact-card">
+        <div class="c-icon">🛡️</div>
+        <div><div class="c-lbl">hackenproof</div><div class="c-val">rahmanhsim</div></div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 hasim_rahman · built with ❤️ in Jakarta</p>
+  </footer>
 </body>
 </html>
