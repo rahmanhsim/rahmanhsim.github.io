@@ -3,425 +3,425 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="rahmanhsim — AI Agent Skills & Social Links">
-  <title>rahmanhsim</title>
+  <meta name="description" content="awesome Skills — AI Agent security skill collection by rahmanhsim">
+  <title>awesome Skills</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f2ece4;
-      --white: #ffffff;
-      --black: #1a1a1a;
+      --bg:     #f2ece4;
+      --white:  #ffffff;
+      --black:  #1a1a1a;
       --border: #1a1a1a;
-      --shadow: 5px 5px 0 #1a1a1a;
-      --shadow-sm: 3px 3px 0 #1a1a1a;
+      --shadow: 4px 4px 0 #1a1a1a;
       --radius: 18px;
-      --radius-sm: 12px;
-      --accent: #e05c3a;
-      --mint: #b8e8c8;
-      --peach: #f0c4a8;
+      --accent: #d95c38;
+      --mint:     #b8e8c8;
+      --peach:    #f0c4a8;
       --lavender: #d4c0f0;
-      --sky: #b8d8f0;
-      --yellow: #f0e0a0;
-      --sage: #c8dcc0;
-      --pink: #f0c0d8;
+      --sky:      #b8d8f0;
+      --yellow:   #f0e0a0;
+      --sage:     #c8dcc0;
+      --pink:     #f0c0d8;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--black); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); font-family:'Inter',sans-serif; color:var(--black); min-height:100vh; }
 
-    /* NAV */
-    nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 1.5rem; max-width: 680px; margin: 0 auto;
+    /* ── NAV ── */
+    nav { max-width:680px; margin:0 auto; padding:1.2rem 1.5rem; display:flex; justify-content:space-between; align-items:center; }
+    .nav-logo { font-family:'Space Mono',monospace; font-weight:700; font-size:.9rem; text-decoration:none; color:var(--black); }
+    .nav-links { display:flex; gap:1.5rem; list-style:none; }
+    .nav-links a { font-family:'Space Mono',monospace; font-size:.7rem; text-decoration:none; color:var(--black); opacity:.5; transition:opacity .2s; }
+    .nav-links a:hover { opacity:1; }
+
+    /* ── WRAP ── */
+    .wrap { max-width:680px; margin:0 auto; padding:0 1.5rem; }
+
+    /* ── HERO ── */
+    #hero { text-align:center; padding:3rem 1.5rem 2rem; max-width:680px; margin:0 auto; }
+    .hero-eyebrow {
+      display:inline-block; font-family:'Space Mono',monospace; font-size:.68rem;
+      border:2px solid var(--black); border-radius:999px; padding:.3rem .8rem;
+      margin-bottom:1.5rem; letter-spacing:.05em;
     }
-    nav .logo { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.95rem; text-decoration: none; color: var(--black); }
-    nav ul { display: flex; gap: 1.5rem; list-style: none; }
-    nav a { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-decoration: none; color: var(--black); opacity: 0.6; }
-    nav a:hover { opacity: 1; }
-
-    .wrap { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
-
-    /* HERO */
-    #hero { padding: 3.5rem 1.5rem 2.5rem; max-width: 680px; margin: 0 auto; text-align: center; }
-    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 8vw, 5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-    h1 em { font-style: italic; color: var(--coral); }
-
-    .terminal {
-      background: #1a1a1a; border-radius: 14px; overflow: hidden;
-      border: 2px solid var(--border); box-shadow: var(--shadow);
-      max-width: 480px; margin: 0 auto 1.5rem; text-align: left;
-    }
-    .mac-bar { display: flex; align-items: center; gap: 6px; padding: 0.6rem 0.9rem; background: #222; border-bottom: 1px solid #333; }
-    .mac-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .mac-dot.red { background: #ff5f56; } .mac-dot.yellow { background: #ffbd2e; } .mac-dot.green { background: #27c93f; }
-    .mac-title { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: #666; margin-left: auto; }
-    .mac-body { padding: 1rem 1.1rem; font-family: 'Space Mono', monospace; font-size: 0.68rem; line-height: 1.7; color: #ccc; }
-    .mac-body .g { color: #27c93f; } .mac-body .y { color: #ffbd2e; } .mac-body .b { color: #6fb3f5; } .mac-body .m { color: #c792ea; }
-
+    h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,8vw,4.5rem); line-height:1.05; margin-bottom:1.2rem; }
+    h1 em { color:var(--accent); font-style:italic; }
+    .hero-desc { font-size:.95rem; line-height:1.7; opacity:.7; max-width:500px; margin:0 auto 1.5rem; }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:2rem; }
     .hero-tag {
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      background: transparent;
-      border: 2px solid var(--border);
-      border-radius: 999px;
-      padding: 0.35rem 1rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: 0.05em;
-    }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1.2rem 0; }
-    .htag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 999px;
-      padding: 0.3rem 0.8rem;
-      box-shadow: 2px 2px 0 var(--border);
+      font-family:'Space Mono',monospace; font-size:.65rem;
+      background:var(--white); border:2px solid var(--black);
+      border-radius:999px; padding:.25rem .7rem;
+      box-shadow:2px 2px 0 var(--black);
     }
 
-    /* SECTIONS */
-    section { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-    section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); margin-bottom: 1.5rem; text-align: center; }
-    section h2 em { font-style: italic; color: var(--coral); }
-    hr.div { border: none; border-top: 2px solid var(--border); max-width: 680px; margin: 0 auto; }
+    /* ── TERMINAL ── */
+    .terminal {
+      background:#1a1a1a; border-radius:14px; overflow:hidden;
+      border:2px solid var(--black); box-shadow:var(--shadow);
+      max-width:500px; margin:0 auto; text-align:left;
+    }
+    .mac-bar { display:flex; align-items:center; gap:6px; padding:.55rem .9rem; background:#252525; border-bottom:1px solid #333; }
+    .mac-dot { width:12px; height:12px; border-radius:50%; }
+    .mac-dot.r { background:#ff5f56; } .mac-dot.y { background:#ffbd2e; } .mac-dot.g { background:#27c93f; }
+    .mac-title { font-family:'Space Mono',monospace; font-size:.65rem; color:#666; margin-left:auto; }
+    .term-body { padding:1rem 1.2rem; font-family:'Space Mono',monospace; font-size:.72rem; line-height:1.8; color:#e0e0e0; min-height:140px; }
+    .term-line { display:block; }
+    .term-line .p { color:#27c93f; }
+    .term-line .c { color:#61dafb; }
+    .term-line .s { color:#f0c040; }
+    .term-line .d { color:#aaa; }
+    .cursor { display:inline-block; width:8px; height:.85em; background:#27c93f; vertical-align:middle; animation:blink .9s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-    /* SKILL CARDS */
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* ── SECTION ── */
+    section { padding:3rem 0; }
+    section + section { border-top:2px solid var(--black); }
+    h2 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; }
+    h2 em { color:var(--accent); font-style:italic; }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     .skill-card {
-      background: var(--white); border: 2px solid var(--border); border-radius: 18px;
-      padding: 1.2rem; box-shadow: var(--shadow);
-      transition: transform 0.15s, box-shadow 0.15s;
+      border:2px solid var(--black); border-radius:var(--radius);
+      padding:1.2rem; box-shadow:var(--shadow); transition:transform .15s, box-shadow .15s;
     }
-    .skill-card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--black); }
-    .skill-card:nth-child(2n) { background: var(--mint); }
-    .skill-card:nth-child(3n) { background: var(--peach); }
-    .skill-card:nth-child(4n) { background: var(--lavender); }
-    .skill-card:nth-child(5n) { background: var(--sky); }
-    .skill-card:nth-child(7n) { background: var(--yellow); }
-    .cat-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; }
-    .cat-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .cat-icon svg { width: 20px; height: 20px; }
-    .cat-name { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; }
-    .cat-count { font-family: 'Space Mono', monospace; font-size: 0.68rem; margin-left: auto; opacity: 0.5; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
-    .stag { font-family: 'Space Mono', monospace; font-size: 0.6rem; background: rgba(0,0,0,0.07); border-radius: 999px; padding: 0.2rem 0.55rem; }
+    .skill-card:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--black); }
+    .skill-card:nth-child(1)  { background:var(--mint); }
+    .skill-card:nth-child(2)  { background:var(--peach); }
+    .skill-card:nth-child(3)  { background:var(--lavender); }
+    .skill-card:nth-child(4)  { background:var(--sky); }
+    .skill-card:nth-child(5)  { background:var(--yellow); }
+    .skill-card:nth-child(6)  { background:var(--sage); }
+    .skill-card:nth-child(7)  { background:var(--pink); }
+    .skill-card:nth-child(8)  { background:var(--mint); }
+    .skill-card:nth-child(9)  { background:var(--peach); }
+    .skill-card:nth-child(10) { background:var(--lavender); }
+    .skill-card:nth-child(11) { background:var(--sky); }
+    .skill-card:nth-child(12) { background:var(--yellow); }
+    .skill-card:nth-child(13) { background:var(--sage); }
+    .skill-card:nth-child(14) { background:var(--pink); }
+    .skill-card:nth-child(15) { background:var(--mint); }
+    .cat-head { display:flex; align-items:center; gap:.6rem; margin-bottom:.8rem; }
+    .cat-icon { width:34px; height:34px; border-radius:8px; background:rgba(0,0,0,.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .cat-icon svg { width:18px; height:18px; }
+    .cat-name { font-family:'Space Mono',monospace; font-weight:700; font-size:.8rem; }
+    .cat-count { font-family:'Space Mono',monospace; font-size:.65rem; opacity:.5; margin-left:auto; flex-shrink:0; }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.5rem; }
+    .stag { font-family:'Space Mono',monospace; font-size:.58rem; background:rgba(0,0,0,.1); border-radius:999px; padding:.15rem .5rem; }
 
-    /* SOCIAL */
-    .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* ── SOCIAL ── */
+    .social-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     .social-card {
-      display: flex; align-items: center; gap: 0.9rem;
-      background: var(--white); border: 2px solid var(--border); border-radius: 18px;
-      padding: 1.1rem 1.2rem; text-decoration: none; color: var(--black);
-      box-shadow: var(--shadow); transition: transform 0.15s, box-shadow 0.15s;
+      display:flex; align-items:center; gap:1rem;
+      border:2px solid var(--black); border-radius:var(--radius);
+      padding:1.1rem 1.2rem; text-decoration:none; color:var(--black);
+      box-shadow:var(--shadow); transition:transform .15s, box-shadow .15s;
     }
-    .social-card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--black); }
-    .social-card:nth-child(1) { background: var(--mint); }
-    .social-card:nth-child(2) { background: var(--peach); }
-    .social-card:nth-child(3) { background: var(--lavender); }
-    .social-card:nth-child(4) { background: var(--sky); }
-    .s-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .s-icon svg { width: 20px; height: 20px; }
-    .s-label { font-family: 'Space Mono', monospace; font-size: 0.68rem; opacity: 0.6; }
-    .s-val { font-family: 'Space Mono', monospace; font-size: 0.82rem; font-weight: 700; }
+    .social-card:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--black); }
+    .social-card:nth-child(1) { background:var(--sky); }
+    .social-card:nth-child(2) { background:var(--mint); }
+    .social-card:nth-child(3) { background:var(--peach); }
+    .social-card:nth-child(4) { background:var(--lavender); }
+    .s-icon { width:38px; height:38px; border-radius:10px; background:rgba(0,0,0,.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .s-icon svg { width:20px; height:20px; }
+    .s-label { font-family:'Space Mono',monospace; font-size:.65rem; opacity:.6; }
+    .s-val { font-family:'Space Mono',monospace; font-weight:700; font-size:.85rem; }
 
-    /* TAG */
-    .tag { font-family: 'Space Mono', monospace; font-size: 0.7rem; border: 1.5px solid var(--border); border-radius: 999px; padding: 0.3rem 0.75rem; background: var(--white); }
+    /* ── FOOTER ── */
+    footer { max-width:680px; margin:0 auto; padding:2rem 1.5rem; border-top:2px solid var(--black); text-align:center; }
+    footer p { font-family:'Space Mono',monospace; font-size:.7rem; opacity:.5; }
 
-    /* FOOTER */
-    footer { text-align: center; padding: 2rem 1.5rem; font-family: 'Space Mono', monospace; font-size: 0.7rem; opacity: 0.4; }
-
-    /* MOBILE */
-    @media (max-width: 500px) {
-      .skills-grid { grid-template-columns: 1fr; }
-      .social-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 2.5rem; }
+    /* ── MOBILE ── */
+    @media (max-width:520px) {
+      h1 { font-size:2.4rem; }
+      .skills-grid { grid-template-columns:1fr; }
+      .social-grid { grid-template-columns:1fr; }
+      .nav-links { display:none; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="logo">rahmanhsim</a>
-    <ul>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#social">Social</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a class="nav-logo" href="#">rahmanhsim</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#social">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <div id="hero">
-    <div class="hero-tag">AI Agent · Security Skills</div>
-    <h1>awesome<br><em>Skills.</em></h1>
-    <p class="hero-desc">
-      A structured collection of security skills for web application penetration testing,
-      API security assessment, network infrastructure auditing, and smart contract analysis.
-    </p>
-    <div class="hero-tags">
-      <span class="htag">Web Pentest</span>
-      <span class="htag">API Security</span>
-      <span class="htag">Recon</span>
-      <span class="htag">Active Directory</span>
-      <span class="htag">Binary Exploit</span>
-      <span class="htag">Crypto</span>
-      <span class="htag">Mobile</span>
-      <span class="htag">Smart Contract</span>
-      <span class="htag">AI Security</span>
-      <span class="htag">110+ Skills</span>
-    </div>
-    <div class="terminal">
-      <div class="mac-bar">
-        <div class="mac-dot red"></div>
-        <div class="mac-dot yellow"></div>
-        <div class="mac-dot green"></div>
-        <span class="mac-title">agent — skill-router</span>
-      </div>
-      <div class="mac-body">
-<span class="g">❯</span> <span class="b">skills</span> <span class="y">list --all</span><br><br>
-<span class="m">loading skill registry...</span><br><br>
-<span class="g">✓</span> Injection      <span class="y">27 skills</span><br>
-<span class="g">✓</span> Auth           <span class="y"> 9 skills</span><br>
-<span class="g">✓</span> Active-Dir     <span class="y"> 7 skills</span><br>
-<span class="g">✓</span> Linux-macOS    <span class="y"> 9 skills</span><br>
-<span class="g">✓</span> Exploit        <span class="y"> 9 skills</span><br>
-<span class="g">✓</span> Recon          <span class="y"> 7 skills</span><br>
-<span class="g">✓</span> Crypto         <span class="y"> 7 skills</span><br>
-<span class="g">✓</span> Infra          <span class="y"> 7 skills</span><br>
-<span class="g">✓</span> API            <span class="y"> 5 skills</span><br>
-<span class="g">✓</span> Mobile         <span class="y"> 3 skills</span><br>
-<span class="g">✓</span> Smart-Contract <span class="y"> 2 skills</span><br>
-<span class="g">✓</span> AI-Security    <span class="y"> 2 skills</span><br>
-<span class="g">✓</span> + more...<br><br>
-<span class="m">total: </span><span class="y">110 skills loaded</span><br>
-<span class="g">❯</span> <span class="cursor"></span>
-      </div>
-    </div>
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-eyebrow">AI Agent · Security Skills</div>
+  <h1>awesome<br><em>Skills.</em></h1>
+  <p class="hero-desc">A structured collection of security skills for web application penetration testing, API security assessment, network infrastructure auditing, and smart contract analysis.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Web Pentest</span>
+    <span class="hero-tag">API Security</span>
+    <span class="hero-tag">Recon & OSINT</span>
+    <span class="hero-tag">Active Directory</span>
+    <span class="hero-tag">Smart Contract</span>
+    <span class="hero-tag">110+ Skills</span>
+    <span class="hero-tag">15 Categories</span>
   </div>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills</h2>
+  <div class="terminal">
+    <div class="mac-bar">
+      <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+      <span class="mac-title">skill-loader.sh</span>
+    </div>
+    <div class="term-body" id="term"></div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <h2>Security <em>Skills.</em></h2>
     <div class="skills-grid">
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M2 12h20"/><path d="M12 2c-2.8 3.3-4 6.5-4 10s1.2 6.7 4 10"/><path d="M12 2c2.8 3.3 4 6.5 4 10s-1.2 6.7-4 10"/></svg>
-          </div>
-          <span class="cat-name">Injection</span><span class="cat-count">27</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="cat-name">Injection</span><span class="cat-count">27 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">XSS</span><span class="stag">SQLi</span><span class="stag">SSRF</span><span class="stag">SSTI</span><span class="stag">XXE</span><span class="stag">JNDI</span><span class="stag">NoSQLi</span><span class="stag">CMDi</span><span class="stag">CRLF</span><span class="stag">WAF Bypass</span><span class="stag">HTTP Smuggling</span><span class="stag">Prototype Pollution</span><span class="stag">WebSocket</span><span class="stag">HTTP/2</span><span class="stag">XSLT</span><span class="stag">CSV Injection</span><span class="stag">Email Header</span><span class="stag">EL Injection</span><span class="stag">Cache Deception</span><span class="stag">CSP Bypass</span><span class="stag">Dangling Markup</span><span class="stag">Type Juggling</span><span class="stag">HPP</span>
+          <span class="stag">XSS</span><span class="stag">SQLi</span><span class="stag">SSRF</span><span class="stag">SSTI</span><span class="stag">XXE</span><span class="stag">JNDI</span><span class="stag">NoSQL</span><span class="stag">CMDi</span><span class="stag">WAF Bypass</span><span class="stag">Smuggling</span><span class="stag">Prototype Pollution</span><span class="stag">CRLF</span><span class="stag">WebSocket</span><span class="stag">HTTP2</span><span class="stag">XSLT</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <span class="cat-name">Auth</span><span class="cat-count">9</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <span class="cat-name">Auth</span><span class="cat-count">9 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">JWT Abuse</span><span class="stag">OAuth OIDC</span><span class="stag">SAML SSO</span><span class="stag">CSRF</span><span class="stag">CORS</span><span class="stag">Clickjacking</span><span class="stag">401/403 Bypass</span><span class="stag">Session Hijack</span><span class="stag">Password Reset</span>
+          <span class="stag">JWT</span><span class="stag">OAuth</span><span class="stag">SAML</span><span class="stag">CSRF</span><span class="stag">CORS</span><span class="stag">Clickjacking</span><span class="stag">Auth Bypass</span><span class="stag">401/403 Bypass</span><span class="stag">Session</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 12h.01"/><path d="M12 12h.01"/><path d="M8 12h.01"/></svg>
-          </div>
-          <span class="cat-name">API</span><span class="cat-count">5</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          <span class="cat-name">API</span><span class="cat-count">5 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">BOLA/IDOR</span><span class="stag">BFLA</span><span class="stag">GraphQL</span><span class="stag">JWT</span><span class="stag">API Recon</span>
+          <span class="stag">REST</span><span class="stag">GraphQL</span><span class="stag">BOLA/IDOR</span><span class="stag">BFLA</span><span class="stag">JWT Abuse</span><span class="stag">API Recon</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          </div>
-          <span class="cat-name">Recon</span><span class="cat-count">7</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <span class="cat-name">Recon</span><span class="cat-count">7 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Subdomain Enum</span><span class="stag">OSINT</span><span class="stag">Subdomain Takeover</span><span class="stag">API Discovery</span><span class="stag">Source Leak</span><span class="stag">Traffic Analysis</span><span class="stag">Memory Forensics</span>
+          <span class="stag">Subdomain</span><span class="stag">OSINT</span><span class="stag">Google Dorks</span><span class="stag">Shodan</span><span class="stag">Email Harvest</span><span class="stag">Threat Intel</span><span class="stag">Traffic Analysis</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <span class="cat-name">Active Directory</span><span class="cat-count">7</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <span class="cat-name">Active Directory</span><span class="cat-count">7 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Kerberos</span><span class="stag">ACL Abuse</span><span class="stag">ADCS</span><span class="stag">NTLM Relay</span><span class="stag">Lateral Movement</span><span class="stag">AV Evasion</span><span class="stag">PrivEsc</span>
+          <span class="stag">Kerberos</span><span class="stag">ACL Abuse</span><span class="stag">ADCS</span><span class="stag">NTLM Relay</span><span class="stag">Lateral Move</span><span class="stag">AV Evasion</span><span class="stag">PrivEsc</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
-          </div>
-          <span class="cat-name">Infra / Network</span><span class="cat-count">7</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="14" height="8" x="5" y="2" rx="2"/><path d="M2 12h20M5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg></div>
+          <span class="cat-name">Linux / macOS</span><span class="cat-count">9 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Tunneling</span><span class="stag">Pivoting</span><span class="stag">Kubernetes</span><span class="stag">DNS Rebinding</span><span class="stag">Protocol Attacks</span><span class="stag">Exposed Services</span><span class="stag">Dependency Confusion</span>
+          <span class="stag">PrivEsc</span><span class="stag">Container Escape</span><span class="stag">Kernel</span><span class="stag">Reverse Shell</span><span class="stag">Sandbox</span><span class="stag">macOS PrivEsc</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><path d="M6 12v4"/><path d="M10 12v4"/><path d="M14 12v4"/><path d="M18 12v4"/><rect width="20" height="4" x="2" y="16" rx="1"/></svg>
-          </div>
-          <span class="cat-name">Linux / macOS</span><span class="cat-count">9</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg></div>
+          <span class="cat-name">Binary Exploit</span><span class="cat-count">9 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">PrivEsc Linux</span><span class="stag">PrivEsc macOS</span><span class="stag">Container Escape</span><span class="stag">Sandbox Escape</span><span class="stag">Kernel Exploit</span><span class="stag">Reverse Shell</span><span class="stag">SUID Abuse</span>
+          <span class="stag">ROP</span><span class="stag">Heap</span><span class="stag">UAF</span><span class="stag">Format String</span><span class="stag">V8</span><span class="stag">Symbolic Exec</span><span class="stag">Anti-Debug</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6 4-4 4 4"/><path d="M12 2v10.3"/><path d="M4.93 10.93 2 13.86v4.28A1.86 1.86 0 0 0 3.86 20h16.28A1.86 1.86 0 0 0 22 18.14v-4.28l-2.93-2.93"/><path d="m8 18 4 4 4-4"/></svg>
-          </div>
-          <span class="cat-name">Binary Exploit</span><span class="cat-count">9</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16.1A5 5 0 0 1 5.5 8h.5a7 7 0 0 1 13 1.5 4.5 4.5 0 0 1-2.5 8.2"/><polyline points="12 12 12 20"/><polyline points="9 17 12 20 15 17"/></svg></div>
+          <span class="cat-name">Infra / Network</span><span class="cat-count">7 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">ROP Chain</span><span class="stag">Heap Exploit</span><span class="stag">Stack Overflow</span><span class="stag">Format String</span><span class="stag">Browser V8</span><span class="stag">UAF</span><span class="stag">Anti-Debug Bypass</span><span class="stag">Symbolic Exec</span>
+          <span class="stag">Tunneling</span><span class="stag">Pivoting</span><span class="stag">Kubernetes</span><span class="stag">DNS Rebinding</span><span class="stag">Dependency Conf</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg>
-          </div>
-          <span class="cat-name">Crypto / Reverse</span><span class="cat-count">7</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg></div>
+          <span class="cat-name">Mobile</span><span class="cat-count">3 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">RSA Attack</span><span class="stag">Lattice</span><span class="stag">Hash Attack</span><span class="stag">Symmetric</span><span class="stag">Classical Cipher</span><span class="stag">Steganography</span><span class="stag">Deobfuscation</span>
+          <span class="stag">Android</span><span class="stag">iOS</span><span class="stag">SSL Pinning</span><span class="stag">ADB</span><span class="stag">Frida</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="12" x="2" y="6" rx="1"/><rect width="7" height="12" x="15" y="6" rx="1"/><path d="M9 12h6"/></svg>
-          </div>
-          <span class="cat-name">Mobile</span><span class="cat-count">3</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <span class="cat-name">Crypto / Reverse</span><span class="cat-count">7 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Android Pentest</span><span class="stag">iOS Pentest</span><span class="stag">SSL Pinning Bypass</span>
+          <span class="stag">RSA</span><span class="stag">Lattice</span><span class="stag">Hash Attack</span><span class="stag">Stego</span><span class="stag">Deobfuscation</span><span class="stag">Symmetric</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <span class="cat-name">Smart Contract</span><span class="cat-count">2</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <span class="cat-name">Smart Contract</span><span class="cat-count">2 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">DeFi Attack Patterns</span><span class="stag">Solidity Vulns</span><span class="stag">Reentrancy</span><span class="stag">Flash Loan</span><span class="stag">Price Manipulation</span>
+          <span class="stag">DeFi Attack</span><span class="stag">Solidity Vuln</span><span class="stag">Reentrancy</span><span class="stag">Flash Loan</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-          </div>
-          <span class="cat-name">AI / LLM Security</span><span class="cat-count">2</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+          <span class="cat-name">AI / LLM</span><span class="cat-count">2 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Prompt Injection</span><span class="stag">LLM Jailbreak</span><span class="stag">Model Extraction</span><span class="stag">Data Poisoning</span>
+          <span class="stag">Prompt Injection</span><span class="stag">LLM Security</span><span class="stag">Jailbreak</span><span class="stag">Model Abuse</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg>
-          </div>
-          <span class="cat-name">Business Logic</span><span class="cat-count">4</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3z"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+          <span class="cat-name">File & Forensics</span><span class="cat-count">6 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Race Condition</span><span class="stag">Payment Abuse</span><span class="stag">Workflow Bypass</span><span class="stag">State Manipulation</span>
+          <span class="stag">Upload Bypass</span><span class="stag">LFI/Path</span><span class="stag">Memory</span><span class="stag">Volatility</span><span class="stag">Malware</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <span class="cat-name">File / Upload</span><span class="cat-count">3</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10M18 20V4M6 20v-6"/></svg></div>
+          <span class="cat-name">Business Logic</span><span class="cat-count">4 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Upload Bypass</span><span class="stag">LFI</span><span class="stag">Path Traversal</span><span class="stag">File Inclusion</span>
+          <span class="stag">Race Condition</span><span class="stag">Pricing Abuse</span><span class="stag">Workflow Bypass</span><span class="stag">State Attack</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="cat-header">
-          <div class="cat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
-          </div>
-          <span class="cat-name">OSINT / Intel</span><span class="cat-count">4</span>
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <span class="cat-name">CI/CD & OSINT</span><span class="cat-count">5 skills</span>
         </div>
         <div class="skill-tags">
-          <span class="stag">Google Dorks</span><span class="stag">Shodan</span><span class="stag">Email Harvest</span><span class="stag">Threat Intel</span><span class="stag">IOC Lookup</span>
+          <span class="stag">Pipeline Poison</span><span class="stag">Secret Leak</span><span class="stag">OSINT</span><span class="stag">Threat Intel</span><span class="stag">IOC</span>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SOCIAL -->
-  <section id="social">
+<!-- SOCIAL -->
+<section id="social">
+  <div class="wrap">
     <h2>Find <em>Me.</em></h2>
     <div class="social-grid">
       <a href="https://x.com/rahmanhsim" target="_blank" class="social-card">
-        <div class="s-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </div>
-        <div><div class="s-label">Twitter / X</div><div class="s-val">@rahmanhsim</div></div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+        <div><div class="s-label">X / Twitter</div><div class="s-val">@rahmanhsim</div></div>
       </a>
       <a href="https://github.com/rahmanhsim" target="_blank" class="social-card">
-        <div class="s-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
         <div><div class="s-label">GitHub</div><div class="s-val">rahmanhsim</div></div>
       </a>
       <a href="https://instagram.com/rahmanhsim" target="_blank" class="social-card">
-        <div class="s-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        </div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div>
         <div><div class="s-label">Instagram</div><div class="s-val">@rahmanhsim</div></div>
       </a>
       <a href="https://hackenproof.com/hackers/rahmanhsim" target="_blank" class="social-card">
-        <div class="s-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div><div class="s-label">HackenProof</div><div class="s-val">rahmanhsim</div></div>
       </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2026 rahmanhsim</p>
-    <p>rahmanhsim.github.io</p>
-  </footer>
+<footer>
+  <p>© 2026 rahmanhsim · rahmanhsim.github.io</p>
+</footer>
+
+<script>
+  const lines = [
+    '<span class="p">$</span> <span class="c">git clone</span> <span class="s">https://github.com/rahmanhsim/awesome-skill.git</span> Skills',
+    '<span class="d">Cloning into \'Skills\'...</span>',
+    '<span class="d">remote: Enumerating objects: 172, done.</span>',
+    '<span class="d">remote: Total 172 (delta 0), reused 0.</span>',
+    '<span class="p">$</span> <span class="c">ls</span> Skills/',
+    '<span class="d">Injection/  Auth/  API/  Recon/  ActiveDirectory/  ...</span>',
+    '<span class="p">$</span> <span class="c">cat</span> <span class="s">Skills/Injection/xss-cross-site-scripting/SKILL.md</span>',
+    '<span class="d">name: xss · 14 techniques · ready ✓</span>',
+  ];
+
+  const term = document.getElementById('term');
+  let li = 0, ci = 0;
+
+  function type() {
+    if (li >= lines.length) {
+      term.innerHTML += '<span class="cursor"></span>';
+      return;
+    }
+    const line = lines[li];
+    if (ci === 0) {
+      const el = document.createElement('span');
+      el.className = 'term-line';
+      el.dataset.raw = line;
+      term.appendChild(el);
+    }
+    const el = term.lastElementChild;
+    const raw = el.dataset.raw;
+    // Type character by character but preserve HTML tags
+    const stripped = raw.replace(/<[^>]+>/g, '');
+    if (ci <= stripped.length) {
+      // Render progressively - strip tags then re-inject
+      let shown = 0, out = '';
+      for (let i = 0; i < raw.length; i++) {
+        if (raw[i] === '<') {
+          const end = raw.indexOf('>', i);
+          out += raw.slice(i, end + 1);
+          i = end;
+        } else {
+          if (shown < ci) { out += raw[i]; shown++; }
+          else break;
+        }
+      }
+      el.innerHTML = out;
+      ci++;
+      setTimeout(type, ci === stripped.length ? 0 : 22);
+    }
+    if (ci > stripped.length) {
+      el.innerHTML = raw + '<br>';
+      ci = 0; li++;
+      setTimeout(type, li % 2 === 0 ? 300 : 80);
+    }
+  }
+
+  setTimeout(type, 800);
+</script>
 
 </body>
 </html>
