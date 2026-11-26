@@ -315,6 +315,21 @@
       animation:blink 1s step-end infinite; margin-left:2px;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .t-user { color:#ffd24a; }
+    .t-host { color:#27c93f; }
+    .t-dim  { color:#777; }
+    .t-out  { color:#a8d8b0; }
+    .t-warn { color:#ff8a70; }
+    .t-accent { color:#ffc93a; }
+    .t-cmdline .cursor { background:#27c93f; }
+    .term-body {
+      position:relative;
+    }
+    .term-body::after {
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px);
+    }
+    .term-body { transition:opacity .5s ease; }
 
     /* ══════════════════════════════════════════
        SECTIONS
@@ -751,56 +766,77 @@
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-  /* ── 3. TERMINAL: streams lorem ipsum (one long string per line) ── */
-  const ipsum = [
-    'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    'sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
-    'neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid ex ea commodi consequatur.',
-    'quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. at vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.',
-    'similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga. et harum quidem rerum facilis est et expedita distinctio nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis voluptas assumenda est omnis dolor repellendus.',
-    'temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. itaque earum rerum hic tenetur a sapiente delectus ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.',
-    'lorem ipsum dolor amet consectetur adipiscing elit duis aute irure dolor in reprehenderit voluptate cillum dolore fugiat nulla pariatur excepteur sint occaecat cupidatat proident culpa officia deserunt mollit anim laborum. viverra mauris aliquam euismod sem fringilla ut placerat orci nulla pellentesque dignissim enim sit amet venenatis urna cursus eget nunc.',
-    'consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim diam vulputate ut pharetra sit amet aliquam id diam maecenas ultricies mi eget mauris pharetra et ultrices neque ornare aenean euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices dui sapien eget mi proin sed libero enim.',
-    'nulla facilisi cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean et tortor.',
-    'at risus viverra adipiscing at in tellus integer feugiat scelerisque varius morbi enim nunc faucibus a pellentesque sit amet porttitor eget dolor morbi non arcu risus quis varius quam quisque id diam vel quam elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.'
-  ];
-
+  /* ── 3. TERMINAL: fake live session — commands type themselves, silly output, loops forever ── */
   const term = document.getElementById('term');
-  let li = 0, ci = 0;
+  const SCRIPT = [
+    { cmd: 'whoami', out: ['rahmanhsim — certified vibes enjoyer (lvl 3)'] },
+    { cmd: 'uptime --mood', out: ['up 27 years, 3 coffees, load average: 0.00 0.00 0.01 (very chill)'] },
+    { cmd: 'ls ~/interests', out: ['wifi-threat-models/  cat-content/  3am-tweets/  lo-fi/  snacks/  cozy-games/'] },
+    { cmd: 'cat 3am-tweets/latest.txt', out: ['"if my wifi disconnects one more time i\'m gonna put my router in the ground."', '(8.9k likes — my greatest achievement)'] },
+    { cmd: 'ping coffee.local', out: ['PING coffee.local: 56 bytes — reply in 3ms ☕', 'reply in 2ms ☕', 'reply: still going, send help'] },
+    { cmd: 'git commit -m "did nothing today"', out: ['[main a1b2c3d] did nothing today', ' 0 files changed, 0 insertions(+), 0 deletions(-)', 'perfect. nothing to fix.'] },
+    { cmd: 'sudo nap --duration 20m', out: ['[sudo] password for rahmanhsim: ********', 'nap initiated… zzz', 'status: 4 hours late. worth it.'] },
+    { cmd: 'rm -rf ./responsibilities', out: ['permission denied: adulthood owns this file', 'nice try though ★'] },
+    { cmd: 'clear && vibes --fresh', out: ['reloading good energy… done. scroll down for more.'] },
+  ];
+  const PROMPT = '<span class="t-user">rahmanhsim</span><span class="t-dim">@</span><span class="t-host">vibes</span><span class="t-dim">:~$</span> ';
 
-  function type() {
-    if (li >= ipsum.length) {
-      if (!term.querySelector('.cursor')) {
-        const c = document.createElement('span');
-        c.className = 'cursor';
-        term.appendChild(c);
-      }
-      return;
+  function spawnCursor() {
+    if (!term.querySelector('.cursor')) {
+      const c = document.createElement('span');
+      c.className = 'cursor';
+      term.appendChild(c);
     }
-    const line = ipsum[li];
-    if (ci === 0) {
-      const el = document.createElement('span');
-      el.className = 'term-line';
-      term.appendChild(el);
-    }
-    const el = term.lastElementChild;
-    el.textContent = line.slice(0, ci);
-    term.scrollTop = term.scrollHeight;
-    ci++;
-    let delay = 4;
-    if (ci % 80 === 0) delay = 90;
-    if (ci >= line.length) {
-      el.textContent = line;
-      term.appendChild(document.createElement('br'));
-      term.appendChild(document.createElement('br'));
-      ci = 0; li++;
-      delay = 350;
-    }
-    setTimeout(type, delay);
   }
-
+  function printLine(html, cls) {
+    const el = document.createElement('span');
+    el.className = 'term-line' + (cls ? ' ' + cls : '');
+    el.innerHTML = html;
+    term.insertBefore(el, term.querySelector('.cursor'));
+    term.appendChild(document.createElement('br'));
+    term.scrollTop = term.scrollHeight;
+    return el;
+  }
+  function runScript() {
+    term.innerHTML = '';
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    term.appendChild(cursor);
+    let si = 0, ci = 0;
+    function step() {
+      if (si >= SCRIPT.length) {
+        setTimeout(() => { term.style.opacity = '0'; }, 2200);
+        setTimeout(() => { term.style.opacity = '1'; runScript(); }, 2800);
+        return;
+      }
+      const scene = SCRIPT[si];
+      const line = scene.cmd;
+      if (ci === 0) printLine(PROMPT, 't-cmdline');
+      const el = term.querySelectorAll('.t-cmdline')[term.querySelectorAll('.t-cmdline').length - 1];
+      el.innerHTML = PROMPT + line.slice(0, ci) + '<span class="cursor"></span>';
+      ci++;
+      let delay = 22 + Math.random() * 46;
+      if (ci >= line.length) {
+        el.innerHTML = PROMPT + line;
+        delay = 260;
+        // type the output lines one by one
+        let oi = 0;
+        (function outStep() {
+          if (oi >= scene.out.length) { ci = 0; si++; setTimeout(step, 520); return; }
+          const o = scene.out[oi];
+          const cls = o.startsWith('permission denied') || o.startsWith('[sudo]') ? 't-warn' : 't-out';
+          printLine(o.replace(/☕/g, '<span class="t-accent">☕</span>').replace(/★/g, '<span class="t-accent">★</span>').replace(/zzz/g, '<span class="t-accent">zzz</span>'), cls);
+          oi++;
+          setTimeout(outStep, 190);
+        })();
+        return;
+      }
+      setTimeout(step, delay);
+    }
+    step();
+  }
   // start terminal only after loader finishes
-  setTimeout(type, 1100);
+  setTimeout(runScript, 1100);
 </script>
 
 </body>
